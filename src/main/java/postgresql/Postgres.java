@@ -5,9 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Postgres {
+    public static int MAX_REQUEST = 100_000;
+
     public static Connection getConnection()
     {
-        String jdbcURL = "jdbc:postgresql://80.101.212.152:7273/test_db";
+        String jdbcURL = "jdbc:postgresql://127.0.0.1:5433/test_db";
         String username = "root";
         String password = "root";
         try {
