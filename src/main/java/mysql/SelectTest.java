@@ -1,4 +1,4 @@
-package mariadb.postgresql;
+package mysql;
 
 import com.github.javafaker.Faker;
 
@@ -8,14 +8,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SelectTest {
-    private static Connection connection = MariaDB.getConnection();
+    private static Connection connection = MySQL.getConnection();
 
     public static void main(String[] args) throws SQLException {
         Statement statement = connection.createStatement();
 
         long startTime = System.nanoTime();
 
-        for (int x = 0; x < MariaDB.MAX_REQUEST; x++) {
+        for (int x = 0; x < MySQL.MAX_REQUEST; x++) {
             long individualTimeStart = System.nanoTime();
             Faker faker = new Faker();
 
@@ -24,7 +24,7 @@ public class SelectTest {
                     "AES_DECRYPT(FROM_BASE64(username), '12345678') as username, " +
                     "password, " +
                     "AES_DECRYPT(FROM_BASE64(email), '12345678') as email " +
-                    "FROM test WHERE id = %s", faker.random().nextInt(1, MariaDB.MAX_REQUEST));
+                    "FROM test WHERE id = %s", faker.random().nextInt(1, MySQL.MAX_REQUEST));
 
             ResultSet resultSet = statement.executeQuery(sql);
 
@@ -38,6 +38,6 @@ public class SelectTest {
         long endTime = System.nanoTime();
 
         System.out.printf("It took %s seconds", (endTime - startTime) / 1_000_000_000);
-        System.out.printf("\nAn average of %sms per request (%s request we made)", (float)((endTime - startTime) / MariaDB.MAX_REQUEST) / 1_000_000, MariaDB.MAX_REQUEST);
+        System.out.printf("\nAn average of %sms per request (%s request we made)", (float)((endTime - startTime) / MySQL.MAX_REQUEST) / 1_000_000, MySQL.MAX_REQUEST);
     }
 }

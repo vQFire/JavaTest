@@ -1,4 +1,4 @@
-package mariadb.postgresql;
+package mariadb;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

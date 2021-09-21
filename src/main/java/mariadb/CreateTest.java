@@ -1,4 +1,4 @@
-package mariadb.postgresql;
+package mariadb;
 
 import com.github.javafaker.Faker;
 
